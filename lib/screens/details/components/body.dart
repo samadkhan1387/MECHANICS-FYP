@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mechanics_mangao/components/default_button.dart';
-import 'package:mechanics_mangao/models/Product.dart';
+import 'package:mechanics_mangao/models/ShopProduct.dart';
 import 'package:mechanics_mangao/size_config.dart';
 import 'package:collection/collection.dart';
 import 'package:mechanics_mangao/models/Cart.dart';
@@ -102,7 +102,7 @@ class _BodyState extends State<Body> {
 
 // import 'package:flutter/material.dart';
 // import 'package:mechanics_mangao/components/default_button.dart';
-// import 'package:mechanics_mangao/models/Product.dart';
+// import 'package:mechanics_mangao/models/ShopProduct.dart';
 // import 'package:mechanics_mangao/size_config.dart';
 // import 'package:collection/collection.dart';
 // import 'package:mechanics_mangao/models/Cart.dart';

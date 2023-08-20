@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mechanics_mangao/models/Product.dart';
+import 'package:mechanics_mangao/models/ShopProduct.dart';
 
 import '../../../constants.dart';
 import '../../../size_config.dart';
@@ -23,7 +23,7 @@ class _ProductImagesState extends State<ProductImages> {
     return Column(
       children: [
         SizedBox(
-          width: getProportionateScreenWidth(238),
+          width: getProportionateScreenWidth(235),
           child: AspectRatio(
             aspectRatio: 1,
             child: Hero(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:mechanics_mangao/models/Product.dart';
+import 'package:mechanics_mangao/models/ShopProduct.dart';
 
 import '../../../constants.dart';
 import '../../../size_config.dart';
@@ -23,9 +23,25 @@ class ProductDescription extends StatelessWidget {
         Padding(
           padding:
               EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
-          child: Text(
-            product.title,
-            style: Theme.of(context).textTheme.headline6,
+          child: Column(
+            children: [
+              Text(
+                product.title,
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: getProportionateScreenWidth(20),
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              Text(
+                "\Rs ${product.price}",
+                style: TextStyle(
+                  fontSize: getProportionateScreenWidth(20),
+                  fontWeight: FontWeight.w600,
+                  color: kPrimaryColor,
+                ),
+              ),
+            ],
           ),
         ),
         Align(
@@ -35,7 +51,7 @@ class ProductDescription extends StatelessWidget {
             width: getProportionateScreenWidth(64),
             decoration: BoxDecoration(
               color:
-                  product.isFavourite ? Color(0xFFFFE6E6) : Color(0xFFF5F6F9),
+                  product.isFavourite ? Color(0xFF3C8ED3) : Color(0xFFF5F6F9),
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(20),
                 bottomLeft: Radius.circular(20),

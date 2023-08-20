@@ -16,10 +16,11 @@ class HomeHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding:
-          EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
+          EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(19)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
+          // ignore: non_constant_identifier_names
           SearchField(onSearch: (String ) {  },),
           IconBtnWithCounter(
             svgSrc: "assets/icons/Cart Icon.svg",

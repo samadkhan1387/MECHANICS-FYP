@@ -52,15 +52,6 @@ class _NotificationScreenState extends State<NotificationScreen> {
       SliverAppBar(
       title: Text('Notifications', style: TextStyle(color: Colors.black),
       ),
-      pinned: true,
-      floating: true,
-      expandedHeight: 60.0,
-      flexibleSpace: FlexibleSpaceBar(
-      background: Image.asset(
-      'assets/images/notification_header_image.jpg',
-        fit: BoxFit.cover,
-      ),
-      ),
       ),
         SliverList(
           delegate: SliverChildBuilderDelegate(

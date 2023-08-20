@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mechanics_mangao/screens/home/components/section_title.dart';
-
 import '../../../size_config.dart';
-
 import 'shop_header.dart';
 import 'shop_product.dart';
 

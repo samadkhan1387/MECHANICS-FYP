@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mechanics_mangao/models/Product.dart';
+import 'package:mechanics_mangao/models/ShopProduct.dart';
 import 'package:mechanics_mangao/size_config.dart';
 import '../../../constants.dart';
 import 'item_count_selector.dart';
@@ -119,7 +119,7 @@ class _ColorDotsState extends State<ColorDots> {
 
 // import 'package:flutter/material.dart';
 // import 'package:mechanics_mangao/components/rounded_icon_btn.dart';
-// import 'package:mechanics_mangao/models/Product.dart';
+// import 'package:mechanics_mangao/models/ShopProduct.dart';
 //
 // import '../../../constants.dart';
 // import '../../../size_config.dart';
