@@ -41,7 +41,7 @@ class CustomBottomNavBar extends StatelessWidget {
             children: [
               IconButton(
                 icon: SvgPicture.asset(
-                  "assets/icons/Shop Icon.svg",
+                  "assets/icons/home.svg",
                   color: MenuState.home == selectedMenu
                       ? kPrimaryColor
                       : inActiveIconColor,
@@ -51,7 +51,7 @@ class CustomBottomNavBar extends StatelessWidget {
               ),
               IconButton(
                 icon: SvgPicture.asset(
-                  "assets/icons/shop 2.svg",
+                  "assets/icons/Shop Icon.svg",
                   color: MenuState.shop == selectedMenu
                       ? kPrimaryColor
                       : inActiveIconColor,
