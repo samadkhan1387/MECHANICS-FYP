@@ -8,6 +8,11 @@ import 'section_title.dart';
 class ShopProducts extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    // Filter the list to include only spare parts products
+    List<Product> spareParts = demoProducts.where((product) {
+      return product.category == "spare part"; // Replace with the actual category of spare parts
+    }).toList();
+
     return Column(
       children: [
         Padding(
@@ -18,14 +23,12 @@ class ShopProducts extends StatelessWidget {
         GridView.count(
           shrinkWrap: true,
           crossAxisCount: 2,
-          childAspectRatio: 0.94,
+          childAspectRatio: 0.88,
           physics: NeverScrollableScrollPhysics(), // Disable scrolling in the grid
           children: List.generate(
-            demoProducts.length,
+            spareParts.length,
                 (index) {
-              if (demoProducts[index].isPopular)
-                return ShopProductCard(product: demoProducts[index]);
-              return SizedBox.shrink();
+              return ShopProductCard(product: spareParts[index]);
             },
           ),
         ),
@@ -33,35 +36,3 @@ class ShopProducts extends StatelessWidget {
     );
   }
 }
-
-// class PopularProducts extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Column(
-//       children: [
-//         Padding(
-//           padding:
-//               EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
-//           child: SectionTitle(title: "Popular Products", press: () {}),
-//         ),
-//         SizedBox(height: getProportionateScreenWidth(20)),
-//         SingleChildScrollView(
-//                   scrollDirection: Axis.horizontal,
-//                   child: Column(
-//                     children: [
-//                       ...List.generate(
-//                         demoProducts.length,
-//                         (index) {
-//                           if (demoProducts[index].isPopular)
-//                             return ProductCard(product: demoProducts[index]);
-//                           return SizedBox
-//                               .shrink(); // here by default width and height is 0
-//                         },
-//                       ),
-//                       SizedBox(width: getProportionateScreenWidth(20)),
-//                         ],
-//                       ),
-//           ),
-//     ]);
-//   }
-// }

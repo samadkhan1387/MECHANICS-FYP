@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class Product {
   final int id;
-  final String title, description;
+  final String title, description, category; // Added category field
   final List<String> images;
   final List<Color> colors;
   final double rating, price;
@@ -18,92 +18,72 @@ class Product {
     required this.title,
     required this.price,
     required this.description,
+    required this.category, // Added category field
   });
-
 }
+
 
 // Our demo Products
 
 List<Product> demoProducts = [
   Product(
     id: 1,
-    images: [
-      "assets/images/mobiloil.png",
-    ],
-    colors: [
-      Color(0xFFF6625E),
-      Color(0xFF836DB8),
-      Color(0xFFDECB9C),
-      Colors.white,
-    ],
-    title: "Mobile Oil",
+    images: ["assets/images/mobiloil.png"],
+    colors: [Color(0xFFF6625E), Color(0xFF836DB8), Color(0xFFDECB9C), Colors.white],
+    title: "Tuning Service Package",
     price: 6000,
-    description: description,
+    description: "Mobil 1™ motor oils are advanced full synthetic motor oils designed to keep your engine running like new ... by providing exceptional wear protection, cleaning power and overall performance…",
     rating: 4.8,
     isFavourite: true,
     isPopular: true,
+    category: "Car Service", // Added category
   ),
-
   Product(
     id: 2,
-    images: [
-      "assets/images/steering.png",
-    ],
-    colors: [
-      Color(0xFFF6625E),
-      Color(0xFF836DB8),
-      Color(0xFFDECB9C),
-      Colors.white,
-    ],
-    title: "Steering Wheel ",
-    price: 8500,
-    description: description,
-    rating: 4.1,
+    images: ["assets/images/steering.png"],
+    colors: [Color(0xFFF6625E), Color(0xFF836DB8), Color(0xFFDECB9C), Colors.white],
+    title: "Steering Wheel",
+    price: 6000,
+    description: "Mobil 1™ motor oils are advanced full synthetic motor oils designed to keep your engine running like new ... by providing exceptional wear protection, cleaning power and overall performance…",
+    rating: 4.8,
     isFavourite: true,
     isPopular: true,
+    category: "spare part", // Added category
   ),
-
   Product(
     id: 3,
-    images: [
-      "assets/images/sparkplug.png",
-    ],
-    colors: [
-      Color(0xFFF6625E),
-      Color(0xFF836DB8),
-      Color(0xFFDECB9C),
-      Colors.white,
-    ],
-    title: "Spark Plug",
-    price: 900,
-    description: description,
-    rating: 4.1,
+    images: ["assets/images/mobiloil.png"],
+    colors: [Color(0xFFF6625E), Color(0xFF836DB8), Color(0xFFDECB9C), Colors.white],
+    title: "Tuning Service Package",
+    price: 6000,
+    description: "Mobil 1™ motor oils are advanced full synthetic motor oils designed to keep your engine running like new ... by providing exceptional wear protection, cleaning power and overall performance…",
+    rating: 4.8,
     isFavourite: true,
     isPopular: true,
+    category: "Car Service", // Added category
   ),
-
   Product(
-      id: 4,
-      images: [
-      "assets/images/steering.png",
-      ],
-      colors: [
-      Color(0xFFF6625E),
-  Color(0xFF836DB8),
-  Color(0xFFDECB9C),
-  Colors.white,
-],
-    title: "Steering Wheel ",
-price: 0,
-description: description,
-rating: 4.1,
-isFavourite: true,
-isPopular: true,
+    id: 4,
+    images: ["assets/images/mobiloil.png"],
+    colors: [Color(0xFFF6625E), Color(0xFF836DB8), Color(0xFFDECB9C), Colors.white],
+    title: "Tuning Service Package",
+    price: 6000,
+    description: "Mobil 1™ motor oils are advanced full synthetic motor oils designed to keep your engine running like new ... by providing exceptional wear protection, cleaning power and overall performance…",
+    rating: 4.8,
+    isFavourite: true,
+    isPopular: true,
+    category: "Car Service", // Added category
+  ),
+  Product(
+    id: 5,
+    images: ["assets/images/mobiloil.png"],
+    colors: [Color(0xFFF6625E), Color(0xFF836DB8), Color(0xFFDECB9C), Colors.white],
+    title: "Tuning Service Package",
+    price: 6000,
+    description: "Mobil 1™ motor oils are advanced full synthetic motor oils designed to keep your engine running like new ... by providing exceptional wear protection, cleaning power and overall performance…",
+    rating: 4.8,
+    isFavourite: true,
+    isPopular: true,
+    category: "Car Service", // Added category
   ),
 ];
-
-const String description =
-    "Mobil 1™ motor oils are advanced full synthetic motor oils designed to keep your engine running like new ... by providing exceptional wear protection, cleaning power and overall performance…";
-const String description2 =
-   "MagnaFlow universal catalytic converters form the basic building blocks for a comprehensive line of direct-fit applications."
-    "The main benefit of the universal catalytic converter is that one unit may cover a wide variety of vehicle makes and models.";

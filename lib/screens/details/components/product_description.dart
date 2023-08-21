@@ -5,7 +5,7 @@ import 'package:mechanics_mangao/models/ShopProduct.dart';
 import '../../../constants.dart';
 import '../../../size_config.dart';
 
-class ProductDescription extends StatelessWidget {
+class ProductDescription extends StatefulWidget {
   const ProductDescription({
     Key? key,
     required this.product,
@@ -16,17 +16,25 @@ class ProductDescription extends StatelessWidget {
   final GestureTapCallback? pressOnSeeMore;
 
   @override
+  _ProductDescriptionState createState() => _ProductDescriptionState();
+}
+
+class _ProductDescriptionState extends State<ProductDescription> {
+  bool showFullDescription = false;
+
+  @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
           padding:
-              EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
+          EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                product.title,
+                widget.product.title,
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: getProportionateScreenWidth(20),
@@ -34,7 +42,7 @@ class ProductDescription extends StatelessWidget {
                 ),
               ),
               Text(
-                "\Rs ${product.price}",
+                "\Rs ${widget.product.price}",
                 style: TextStyle(
                   fontSize: getProportionateScreenWidth(20),
                   fontWeight: FontWeight.w600,
@@ -43,6 +51,7 @@ class ProductDescription extends StatelessWidget {
               ),
             ],
           ),
+
         ),
         Align(
           alignment: Alignment.centerRight,
@@ -51,7 +60,7 @@ class ProductDescription extends StatelessWidget {
             width: getProportionateScreenWidth(64),
             decoration: BoxDecoration(
               color:
-                  product.isFavourite ? Color(0xFF3C8ED3) : Color(0xFFF5F6F9),
+              widget.product.isFavourite ? Color(0xFF3C8ED3) : Color(0xFFF5F6F9),
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(20),
                 bottomLeft: Radius.circular(20),
@@ -60,19 +69,19 @@ class ProductDescription extends StatelessWidget {
             child: SvgPicture.asset(
               "assets/icons/Heart Icon_2.svg",
               color:
-                  product.isFavourite ? Color(0xFFFF4848) : Color(0xFFDBDEE4),
+              widget.product.isFavourite ? Color(0xFFFF4848) : Color(0xFFDBDEE4),
               height: getProportionateScreenWidth(16),
             ),
           ),
         ),
         Padding(
           padding: EdgeInsets.only(
-          left: getProportionateScreenWidth(20),
-          right: getProportionateScreenWidth(64),
+            left: getProportionateScreenWidth(20),
+            right: getProportionateScreenWidth(64),
           ),
           child: Text(
-            product.description,
-            maxLines: 3,
+            widget.product.description,
+            maxLines: showFullDescription ? null : 3,
           ),
         ),
         Padding(
@@ -81,13 +90,19 @@ class ProductDescription extends StatelessWidget {
             vertical: 10,
           ),
           child: GestureDetector(
-            onTap: () {},
+            onTap: () {
+              setState(() {
+                showFullDescription = !showFullDescription;
+              });
+            },
             child: Row(
               children: [
                 Text(
-                  "See More Detail",
+                  showFullDescription ? "See Less Detail" : "See More Detail",
                   style: TextStyle(
-                      fontWeight: FontWeight.w600, color: kPrimaryColor),
+                    fontWeight: FontWeight.w600,
+                    color: kPrimaryColor,
+                  ),
                 ),
                 SizedBox(width: 5),
                 Icon(

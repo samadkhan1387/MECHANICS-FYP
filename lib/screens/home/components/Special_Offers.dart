@@ -35,10 +35,11 @@ class _SpecialOffersState extends State<SpecialOffers> {
             },
           ),
           items: [
-            "assets/images/banner1.jpg",
-            "assets/images/banner2.jpg",
-            "assets/images/banner3.jpg",
-            "assets/images/banner4.jpg",
+            "assets/images/b5.jpg",
+            "assets/images/b1.jpg",
+            "assets/images/b2.jpg",
+            "assets/images/b3.jpg",
+            "assets/images/b4.jpg",
           ].map((image) {
             return Padding(
               padding: EdgeInsets.symmetric(horizontal: 10),
@@ -49,7 +50,7 @@ class _SpecialOffersState extends State<SpecialOffers> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => image.contains('banner1')
+                          builder: (context) => image.contains('b1')
                               ? EngineServiceDetails()
                               : EngineTuningDetails(),
                         ),

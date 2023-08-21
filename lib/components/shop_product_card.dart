@@ -9,7 +9,7 @@ class ShopProductCard extends StatelessWidget {
   const ShopProductCard({
     Key? key,
     this.width = 158,
-    this.aspectRatio = 1.5,
+    this.aspectRatio = 1.6,
     required this.product,
   }) : super(key: key);
 
