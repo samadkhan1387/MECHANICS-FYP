@@ -23,7 +23,7 @@ class ShopProducts extends StatelessWidget {
         GridView.count(
           shrinkWrap: true,
           crossAxisCount: 2,
-          childAspectRatio: 0.88,
+          childAspectRatio: 0.80,
           physics: NeverScrollableScrollPhysics(), // Disable scrolling in the grid
           children: List.generate(
             spareParts.length,

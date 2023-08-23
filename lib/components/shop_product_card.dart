@@ -9,7 +9,7 @@ class ShopProductCard extends StatelessWidget {
   const ShopProductCard({
     Key? key,
     this.width = 158,
-    this.aspectRatio = 1.6,
+    this.aspectRatio = 1.3,
     required this.product,
   }) : super(key: key);
 
@@ -53,8 +53,7 @@ class ShopProductCard extends StatelessWidget {
                     tag: product.id.toString(),
                     child: Image.asset(
                       product.images[0],
-                      height: 100,
-                      width: 100,
+                      fit: BoxFit.cover,
                     ),
                   ),
                 ),
@@ -77,7 +76,7 @@ class ShopProductCard extends StatelessWidget {
                     ),
                     SizedBox(height: getProportionateScreenWidth(0)),
                     Text(
-                      "\Rs ${product.price}",
+                      "\Rs ${product.price.toStringAsFixed(0)}",
                       style: TextStyle(
                         fontSize: getProportionateScreenWidth(16),
                         fontWeight: FontWeight.w600,

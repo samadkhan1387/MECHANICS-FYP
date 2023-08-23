@@ -19,11 +19,11 @@ class CarPackages extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(21)),
           child: SectionTitle(title: "Car Service Packages", press: () {}),
         ),
-        SizedBox(height: getProportionateScreenWidth(20)),
+        SizedBox(height: getProportionateScreenWidth(10)),
         GridView.count(
           shrinkWrap: true,
           crossAxisCount: 2,
-          childAspectRatio: 0.88,
+          childAspectRatio: 0.80,
           physics: NeverScrollableScrollPhysics(), // Disable scrolling in the grid
           children: List.generate(
             carServicePackages.length,

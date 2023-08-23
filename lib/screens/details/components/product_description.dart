@@ -42,7 +42,7 @@ class _ProductDescriptionState extends State<ProductDescription> {
                 ),
               ),
               Text(
-                "\Rs ${widget.product.price}",
+                "\Rs ${widget.product.price.toString().replaceAll(RegExp(r"([.]*0)(?!.*\d)"), "")}",
                 style: TextStyle(
                   fontSize: getProportionateScreenWidth(20),
                   fontWeight: FontWeight.w600,

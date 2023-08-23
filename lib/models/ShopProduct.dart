@@ -28,11 +28,15 @@ class Product {
 List<Product> demoProducts = [
   Product(
     id: 1,
-    images: ["assets/images/mobiloil.png"],
+    images: ["assets/images/tuning1.png"],
     colors: [Color(0xFFF6625E), Color(0xFF836DB8), Color(0xFFDECB9C), Colors.white],
     title: "Tuning Service Package",
-    price: 6000,
-    description: "Mobil 1™ motor oils are advanced full synthetic motor oils designed to keep your engine running like new ... by providing exceptional wear protection, cleaning power and overall performance…",
+    price: 1500,
+    description: "Throttle body cleaning"
+        ", Spark plug cleaning"
+        ", MAP,MAF, Oxygen sensor cleaning"
+        ", OBD scanning & calibration"
+        ", Fluid level inspection",
     rating: 4.8,
     isFavourite: true,
     isPopular: true,
@@ -40,23 +44,33 @@ List<Product> demoProducts = [
   ),
   Product(
     id: 2,
-    images: ["assets/images/steering.png"],
+    images: ["assets/images/dailydriver.png"],
     colors: [Color(0xFFF6625E), Color(0xFF836DB8), Color(0xFFDECB9C), Colors.white],
-    title: "Steering Wheel",
-    price: 6000,
-    description: "Mobil 1™ motor oils are advanced full synthetic motor oils designed to keep your engine running like new ... by providing exceptional wear protection, cleaning power and overall performance…",
+    title: "Daily Driver Package",
+    price: 3000,
+    description: "Throttle body cleaning"
+        ", Spark plug cleaning"
+        ", MAP,MAF, Oxygen sensor cleaning"
+        ", OBD scanning & calibration"
+        ", Fluid level inspection"
+        ",Leakage inspection",
     rating: 4.8,
     isFavourite: true,
     isPopular: true,
-    category: "spare part", // Added category
+    category: "Car Service", // Added category
   ),
   Product(
     id: 3,
-    images: ["assets/images/mobiloil.png"],
+    images: ["assets/images/brakes.png"],
     colors: [Color(0xFFF6625E), Color(0xFF836DB8), Color(0xFFDECB9C), Colors.white],
-    title: "Tuning Service Package",
-    price: 6000,
-    description: "Mobil 1™ motor oils are advanced full synthetic motor oils designed to keep your engine running like new ... by providing exceptional wear protection, cleaning power and overall performance…",
+    title: "Brakes Overhaul Package",
+    price: 3500,
+    description: "Front and Rear calliper service"
+        ",Drum brake service"
+        ",Brake fluid top up"
+        ",Disc and Drum lathe turning"
+        ",Brake pad replacement"
+        ",Brake shoe replacement",
     rating: 4.8,
     isFavourite: true,
     isPopular: true,
@@ -64,26 +78,38 @@ List<Product> demoProducts = [
   ),
   Product(
     id: 4,
-    images: ["assets/images/mobiloil.png"],
+    images: ["assets/images/steering.png"],
     colors: [Color(0xFFF6625E), Color(0xFF836DB8), Color(0xFFDECB9C), Colors.white],
-    title: "Tuning Service Package",
-    price: 6000,
-    description: "Mobil 1™ motor oils are advanced full synthetic motor oils designed to keep your engine running like new ... by providing exceptional wear protection, cleaning power and overall performance…",
+    title: "Honda Steering Wheel",
+    price: 10000,
+    description: "original honda steering wheel for your car",
     rating: 4.8,
     isFavourite: true,
     isPopular: true,
-    category: "Car Service", // Added category
+    category: "spare part", // Added category
   ),
   Product(
     id: 5,
-    images: ["assets/images/mobiloil.png"],
+    images: ["assets/images/sparkplug.png"],
     colors: [Color(0xFFF6625E), Color(0xFF836DB8), Color(0xFFDECB9C), Colors.white],
-    title: "Tuning Service Package",
-    price: 6000,
-    description: "Mobil 1™ motor oils are advanced full synthetic motor oils designed to keep your engine running like new ... by providing exceptional wear protection, cleaning power and overall performance…",
+    title: "Spark Plug",
+    price: 700,
+    description: "Engine iridium sparkplug orignial NGK",
     rating: 4.8,
     isFavourite: true,
     isPopular: true,
-    category: "Car Service", // Added category
+    category: "spare part", // Added category
+  ),
+  Product(
+    id: 6,
+    images: ["assets/images/mobiloil.png"],
+    colors: [Color(0xFFF6625E), Color(0xFF836DB8), Color(0xFFDECB9C), Colors.white],
+    title: "Mobile 1 Oil",
+    price: 700,
+    description: "Mobil 1™ motor oils are advanced full synthetic motor oils designed to keep your engine running like new by providing exceptional wear protection, cleaning power and overall performance",
+    rating: 4.8,
+    isFavourite: true,
+    isPopular: true,
+    category: "spare part", // Added category
   ),
 ];
