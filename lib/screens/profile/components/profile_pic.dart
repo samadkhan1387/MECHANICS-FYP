@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import 'myaccount.dart';
+// Replace with the actual import for your edit profile page
+
 class ProfilePic extends StatelessWidget {
   const ProfilePic({
     Key? key,
@@ -15,8 +18,16 @@ class ProfilePic extends StatelessWidget {
         fit: StackFit.expand,
         clipBehavior: Clip.none,
         children: [
-          CircleAvatar(
-            backgroundImage: AssetImage("assets/images/Profile Image.png"),
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => MyAccountPage()),
+              );
+            },
+            child: CircleAvatar(
+              backgroundImage: AssetImage("assets/images/Profile Image.png"),
+            ),
           ),
           Positioned(
             right: -16,

@@ -15,6 +15,17 @@ class ItemCountSelector extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
+        Padding(
+          padding: EdgeInsets.only(right: getProportionateScreenWidth(101)),
+          child: Text(
+            'Select Quantity',
+            style: TextStyle(
+              fontSize: getProportionateScreenWidth(16),
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+            ),
+          ),
+        ), // Add spacing
         RoundedIconBtn(
           icon: Icons.remove,
           press: () {
@@ -39,6 +50,24 @@ class ItemCountSelector extends StatelessWidget {
             onItemCountChanged(itemCount + 1);
           },
         ),
+      ],
+    );
+  }
+}
+
+class YourPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start, // Align content to the left side
+      children: [
+        ItemCountSelector(
+          itemCount: 5, // Provide your own item count here
+          onItemCountChanged: (newItemCount) {
+            // Handle item count change
+          },
+        ),
+        // Other widgets can follow here
       ],
     );
   }
