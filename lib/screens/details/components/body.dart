@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mechanics_mangao/components/default_button.dart';
 import 'package:mechanics_mangao/models/ShopProduct.dart';
+import 'package:mechanics_mangao/models/appointment_booking.dart';
 import 'package:mechanics_mangao/size_config.dart';
 import 'package:collection/collection.dart';
 import 'package:mechanics_mangao/models/Cart.dart';
@@ -21,6 +22,14 @@ class Body extends StatefulWidget {
 
 class _BodyState extends State<Body> {
   int _itemNo = 1;
+
+  String getButtonText(Product product) {
+    if (product.category == "car service") {
+      return "Book Car Service"; // Change this to the desired button text
+    } else {
+      return "Add To Cart"; // Default button text for other categories
+    }
+  }
 
   void _addToCart(BuildContext context, Product product) {
     // Find the Cart for the product in the cart list
@@ -80,11 +89,21 @@ class _BodyState extends State<Body> {
                           top: getProportionateScreenWidth(15),
                         ),
                         child: DefaultButton(
-                          text: "Add To Cart",
+                          text: widget.product.category == "Car Service"
+                              ? "Book Appointment"
+                              : "Add To Cart",
                           press: () {
-                            // for adding items
-                            _addToCart(context, widget.product);
-                            // print('Item added to cart!');
+                            if (widget.product.category == "Car Service") {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => BookAppointmentPage(),
+                                ),
+                              );
+                            } else {
+                              // Handle adding to cart action
+                              _addToCart(context, widget.product);
+                            }
                           },
                         ),
                       ),
