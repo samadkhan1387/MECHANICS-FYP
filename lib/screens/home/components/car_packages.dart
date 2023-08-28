@@ -23,8 +23,10 @@ class CarPackages extends StatelessWidget {
         GridView.count(
           shrinkWrap: true,
           crossAxisCount: 2,
-          childAspectRatio: 0.80,
-          physics: NeverScrollableScrollPhysics(), // Disable scrolling in the grid
+          childAspectRatio: 0.78,
+          physics: NeverScrollableScrollPhysics(),
+          mainAxisSpacing: 1, // Adjust this value to decrease vertical spacing
+          crossAxisSpacing: 0, // Adjust this value to decrease horizontal spacing// Disable scrolling in the grid
           children: List.generate(
             carServicePackages.length,
                 (index) {

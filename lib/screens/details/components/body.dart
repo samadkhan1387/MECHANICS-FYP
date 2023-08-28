@@ -97,7 +97,7 @@ class _BodyState extends State<Body> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => BookAppointmentPage(),
+                                  builder: (context) => BookAppointmentPage(productTitle: widget.product.title),
                                 ),
                               );
                             } else {
