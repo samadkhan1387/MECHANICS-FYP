@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:mechanics_mangao/models/Cart.dart';
 import 'package:lottie/lottie.dart';
 
+import 'CardPaymentScreen.dart';
+
 class CheckoutScreen extends StatefulWidget {
-  final List<Cart> cartItems; // Assuming you have a Cart class as defined in your cart.dart file.
+  final List<Cart> cartItems;
 
   CheckoutScreen({required this.cartItems});
 
@@ -13,83 +15,147 @@ class CheckoutScreen extends StatefulWidget {
 
 class _CheckoutScreenState extends State<CheckoutScreen> {
   String paymentMethod = "Cash on Delivery";
+  String fullName = "";
   String address = "";
-  int deliveryDuration = 1; // Default delivery duration, you can set this based on your requirements.
+  String city = "";
+  String province = "";
+  String zipCode = "";
+  bool cardPaymentSelected = false;
+
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Checkout Details"),
+        title: Text("Add Shipping Address", style: TextStyle(color: Colors.black)),
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(horizontal: 16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(height: 16),
-            Text(
-              "Bought Items",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(height: 8),
-            ListView.builder(
-              shrinkWrap: true,
-              itemCount: widget.cartItems.length,
-              itemBuilder: (context, index) {
-                final cart = widget.cartItems[index];
-                final product = cart.product;
-
-                return ListTile(
-                  leading: CircleAvatar(
-                    backgroundImage: NetworkImage(product.images[0]), // Assuming the first image is the main product image.
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                TextFormField(
+                  onChanged: (newValue) {
+                    setState(() {
+                      fullName = newValue;
+                    });
+                  },
+                  decoration: InputDecoration(labelText: "Full Name", hintText: "Enter your name"),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter your name';
+                    }
+                    return null;
+                  },
+                ),
+                SizedBox(height: 20),
+                TextFormField(
+                  onChanged: (newValue) {
+                    setState(() {
+                      address = newValue;
+                    });
+                  },
+                  decoration: InputDecoration(labelText: "Address", hintText: "Enter your full address"),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter your address';
+                    }
+                    return null;
+                  },
+                ),
+                SizedBox(height: 20),
+                TextFormField(
+                  onChanged: (newValue) {
+                    setState(() {
+                      city = newValue;
+                    });
+                  },
+                  decoration: InputDecoration(labelText: "City", hintText: "Enter your city"),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter your city';
+                    }
+                    return null;
+                  },
+                ),
+                SizedBox(height: 20),
+                TextFormField(
+                  onChanged: (newValue) {
+                    setState(() {
+                      province = newValue;
+                    });
+                  },
+                  decoration: InputDecoration(labelText: "Province", hintText: "Enter your province"),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter your province';
+                    }
+                    return null;
+                  },
+                ),
+                SizedBox(height: 20),
+                TextFormField(
+                  onChanged: (newValue) {
+                    setState(() {
+                      zipCode = newValue;
+                    });
+                  },
+                  decoration: InputDecoration(labelText: "Zip Code", hintText: "Enter your Zip Code "),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter your Zip Code';
+                    }
+                    return null;
+                  },
+                ),
+                SizedBox(height: 20),
+                Text(
+                  "Select Payment Method",
+                  style: TextStyle(fontSize: 22, color: Colors.black),
+                ),
+                buildPaymentMethodOptions(),
+                if (cardPaymentSelected) ...[
+                  // Include additional fields for card payment if needed
+                ],
+                SizedBox(height: 20),
+                Center(
+                  child: Container(
+                    width: 250,
+                    height: 60,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(20.0),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          if (_formKey.currentState!.validate()) {
+                            // Validate the payment method
+                            if (paymentMethod == "Cash on Delivery") {
+                              // Handle Cash on Delivery payment
+                              _placeOrder();
+                            } 
+                          }
+                        },
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF3C8ED3)),
+                        ),
+                        child: Text("Confirm & Pay", style: TextStyle(fontSize: 20)),
+                      ),
+                    ),
                   ),
-                  title: Text(product.title),
-                  subtitle: Text("Quantity: ${cart.numOfItem}"),
-                  trailing: Text("\Rs ${product.price * cart.numOfItem}"), // Total price for this item (price * quantity).
-                );
-              },
+                ),
+              ],
             ),
-            SizedBox(height: 16),
-            Text(
-              "Payment Method",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-            buildPaymentMethodOptions(), // Display the options for payment method.
-            SizedBox(height: 16),
-            Text(
-              "Address",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-            buildAddressTextField(), // Allow the user to enter their address.
-            SizedBox(height: 16),
-            Text(
-              "Delivery Estimated Duration",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-            buildDeliveryDurationText(), // Display the estimated delivery duration.
-            // You can add more details as needed.
-          ],
-        ),
-      ),
-      floatingActionButton: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          FloatingActionButton.extended(
-            onPressed: () {
-              _placeOrder(); // Call the function to place the order and navigate to the success screen.
-            },
-            icon: Icon(Icons.shopping_bag),
-            label: Text("Place Order"), // The label text for the button.
           ),
-        ],
+        ),
       ),
     );
   }
 
-  // Function to place the order and navigate to the success screen
   void _placeOrder() {
-    // Perform any order processing or API calls here, if needed.
+    // Perform order processing or API calls here.
 
     Navigator.push(
       context,
@@ -98,52 +164,65 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
       ),
     );
   }
+
   Widget buildPaymentMethodOptions() {
-    // Define the options for payment method here. You can use a dropdown or radio buttons.
-    return DropdownButton<String>(
-      value: paymentMethod,
-      onChanged: (newValue) {
-        setState(() {
-          paymentMethod = newValue!;
-        });
-      },
-      items: [
-        "Cash on Delivery",
-        "Card Payment (Visa)",
-        "Card Payment (MasterCard)",
-        "PayPal",
-        // Add more options as needed.
-      ].map<DropdownMenuItem<String>>((value) {
-        return DropdownMenuItem<String>(
-          value: value,
-          child: Text(value),
-        );
-      }).toList(),
+    return Column(
+      children: [
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Radio(
+              value: "Cash on Delivery",
+              groupValue: paymentMethod,
+              onChanged: (value) {
+                setState(() {
+                  paymentMethod = value.toString();
+                  cardPaymentSelected = false;
+                });
+              },
+            ),
+            Expanded(
+              child: ListTile(
+                title: Text("Cash on Delivery"),
+              ),
+            ),
+          ],
+        ),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Radio(
+              value: "Card Payment",
+              groupValue: paymentMethod,
+              onChanged: (value) {
+                setState(() {
+                  paymentMethod = value.toString();
+                  cardPaymentSelected = true;
+                });
+
+                if (cardPaymentSelected) {
+                  // Navigate to CardPaymentScreen when Card Payment is selected
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => CardPaymentScreen(),
+                    ),
+                  );
+                }
+              },
+            ),
+            Expanded(
+              child: ListTile(
+                title: Text("Card Payment"),
+              ),
+            ),
+          ],
+        ),
+      ],
     );
-  }
-
-  Widget buildAddressTextField() {
-    // Allow the user to enter their address details here.
-    return TextField(
-      onChanged: (newValue) {
-        setState(() {
-          address = newValue;
-        });
-      },
-      decoration: InputDecoration(
-        hintText: "Enter your address",
-      ),
-    );
-  }
-
-  Widget buildDeliveryDurationText() {
-    // Calculate the delivery duration based on the number of items in the cart.
-    int totalItems = widget.cartItems.fold(0, (sum, cart) => sum + cart.numOfItem);
-    deliveryDuration = 1 + totalItems ~/ 5; // For every 5 items, add 1 day to the delivery duration.
-
-    return Text("$deliveryDuration business days");
   }
 }
+
 class OrderSuccessScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -177,7 +256,7 @@ class OrderSuccessScreen extends StatelessWidget {
                 "Continue Shopping",
                 style: TextStyle(
                   fontSize: 18,
-                  color: Colors.blue, // Customize the color as needed.
+                  color: Colors.blue,
                   decoration: TextDecoration.underline,
                 ),
               ),
@@ -188,124 +267,3 @@ class OrderSuccessScreen extends StatelessWidget {
     );
   }
 }
-
-
-// class CheckoutScreen extends StatefulWidget {
-//   final List<Cart> cartItems;
-//
-//   CheckoutScreen({required this.cartItems});
-//
-//   @override
-//   _CheckoutScreenState createState() => _CheckoutScreenState();
-// }
-//
-// class _CheckoutScreenState extends State<CheckoutScreen> {
-//   String paymentMethod = "Cash on Delivery";
-//   String address = "";
-//   int deliveryDuration = 1; // Default delivery duration, you can set this based on your requirements.
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text("Checkout Details"),
-//       ),
-//       body: SingleChildScrollView(
-//         padding: EdgeInsets.symmetric(horizontal: 16),
-//         child: Column(
-//           crossAxisAlignment: CrossAxisAlignment.start,
-//           children: [
-//             SizedBox(height: 16),
-//             Text(
-//               "Bought Items",
-//               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-//             ),
-//             SizedBox(height: 8),
-//             ListView.builder(
-//               shrinkWrap: true,
-//               itemCount: widget.cartItems.length,
-//               itemBuilder: (context, index) {
-//                 final cart = widget.cartItems[index];
-//                 final product = cart.product;
-//
-//                 return ListTile(
-//                   leading: CircleAvatar(
-//                     backgroundImage: NetworkImage(product.images[0]),
-//                   ),
-//                   title: Text(product.title),
-//                   subtitle: Text("Quantity: ${cart.numOfItem}"),
-//                   trailing: Text("\Rs ${product.price * cart.numOfItem}"), // Total price for this item (price * quantity).
-//                 );
-//               },
-//             ),
-//             SizedBox(height: 16),
-//             Text(
-//               "Payment Method",
-//               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-//             ),
-//             buildPaymentMethodOptions(), // Display the options for payment method.
-//             SizedBox(height: 16),
-//             Text(
-//               "Address",
-//               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-//             ),
-//             buildAddressTextField(), // Allow the user to enter their address.
-//             SizedBox(height: 16),
-//             Text(
-//               "Delivery Estimated Duration",
-//               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-//             ),
-//             buildDeliveryDurationText(), // Display the estimated delivery duration.
-//             // You can add more details as needed.
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-//
-//   Widget buildPaymentMethodOptions() {
-//     // Define the options for payment method here. You can use a dropdown or radio buttons.
-//     return DropdownButton<String>(
-//       value: paymentMethod,
-//       onChanged: (newValue) {
-//         setState(() {
-//           paymentMethod = newValue!;
-//         });
-//       },
-//       items: [
-//         "Cash on Delivery",
-//         "Card Payment (Visa)",
-//         "Card Payment (MasterCard)",
-//         "PayPal",
-//         // Add more options as needed.
-//       ].map<DropdownMenuItem<String>>((value) {
-//         return DropdownMenuItem<String>(
-//           value: value,
-//           child: Text(value),
-//         );
-//       }).toList(),
-//     );
-//   }
-//
-//   Widget buildAddressTextField() {
-//     // Allow the user to enter their address details here.
-//     return TextField(
-//       onChanged: (newValue) {
-//         setState(() {
-//           address = newValue;
-//         });
-//       },
-//       decoration: InputDecoration(
-//         hintText: "Enter your address",
-//       ),
-//     );
-//   }
-//
-//   Widget buildDeliveryDurationText() {
-//     // Calculate the delivery duration based on the number of items in the cart.
-//     int totalItems = widget.cartItems.fold(0, (sum, cart) => sum + cart.numOfItem);
-//     deliveryDuration = 1 + totalItems ~/ 5; // For every 5 items, add 1 day to the delivery duration.
-//
-//     return Text("$deliveryDuration business days");
-//   }
-// }

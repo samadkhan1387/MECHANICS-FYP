@@ -106,7 +106,7 @@ class _BookAppointmentPageState extends State<BookAppointmentPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Book Appointment'),
+        title: Text("Add Booking Details", style: TextStyle(color: Colors.black)),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -116,21 +116,12 @@ class _BookAppointmentPageState extends State<BookAppointmentPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text(
-                  'Book Appointment',
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                  ),
-                ),
-                SizedBox(height: 25),
                 TextFormField(
                   controller: _packageNameController,
                   decoration: InputDecoration(labelText: 'Package Name'),
                   readOnly: true,
                 ),
-                SizedBox(height: 25),
+                SizedBox(height: 20),
                 TextFormField(
                   controller: _nameController,
                   decoration: InputDecoration(labelText: 'Name'),
@@ -141,7 +132,7 @@ class _BookAppointmentPageState extends State<BookAppointmentPage> {
                     return null;
                   },
                 ),
-                SizedBox(height: 25),
+                SizedBox(height: 20),
                 TextFormField(
                   controller: _phoneController,
                   decoration: InputDecoration(labelText: 'Phone Number'),
@@ -156,7 +147,7 @@ class _BookAppointmentPageState extends State<BookAppointmentPage> {
                     return null;
                   },
                 ),
-                SizedBox(height: 25),
+                SizedBox(height: 20),
                 TextFormField(
                   controller: _carModelController,
                   decoration: InputDecoration(labelText: 'Car Model'),
@@ -167,7 +158,7 @@ class _BookAppointmentPageState extends State<BookAppointmentPage> {
                     return null;
                   },
                 ),
-                SizedBox(height: 25),
+                SizedBox(height: 20),
                 GestureDetector(
                   onTap: () => _selectYear(context),
                   child: InputDecorator(
@@ -179,7 +170,7 @@ class _BookAppointmentPageState extends State<BookAppointmentPage> {
                     ),
                   ),
                 ),
-                SizedBox(height: 25),
+                SizedBox(height: 20),
                 Row(
                   children: [
                     Expanded(
@@ -225,22 +216,31 @@ class _BookAppointmentPageState extends State<BookAppointmentPage> {
                 ),
                 SizedBox(height: 20),
                 Center(
-                  child: ElevatedButton(
-                    onPressed: () {
-                      if (_formKey.currentState!.validate()) {
-                        // Handle appointment booking logic here
+                  child: Container(
+                    width: 250, // Makes the button take the full width
+                    height: 60,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(20.0),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        if (_formKey.currentState!.validate()) {
+                          // Handle appointment booking logic here
 
-                        // Show a confirmation snackbar
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text('Appointment booked')),
-                        );
-                      }
-                    },
-                    child: Text('Book Appointment'),
+                          // Show a confirmation snackbar
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text('Appointment booked')),
+                          );
+                        }
+                      },
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF3C8ED3)),
+                      ),
+                      child: Text('Confirm Appointment', style: TextStyle(fontSize: 20)),
+                    ),
                   ),
                 ),
-                SizedBox(height: 20),
-              ],
+
+                )],
             ),
           ),
         ),

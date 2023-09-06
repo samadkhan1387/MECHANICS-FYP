@@ -51,7 +51,6 @@ class _ProductDescriptionState extends State<ProductDescription> {
               ),
             ],
           ),
-
         ),
         Align(
           alignment: Alignment.centerRight,
@@ -59,8 +58,7 @@ class _ProductDescriptionState extends State<ProductDescription> {
             padding: EdgeInsets.all(getProportionateScreenWidth(15)),
             width: getProportionateScreenWidth(64),
             decoration: BoxDecoration(
-              color:
-              widget.product.isFavourite ? Color(0xFF3C8ED3) : Color(0xFFF5F6F9),
+              color: widget.product.isFavourite ? Color(0xFF3C8ED3) : Color(0xFFF5F6F9),
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(20),
                 bottomLeft: Radius.circular(20),
@@ -68,12 +66,25 @@ class _ProductDescriptionState extends State<ProductDescription> {
             ),
             child: SvgPicture.asset(
               "assets/icons/Heart Icon_2.svg",
-              color:
-              widget.product.isFavourite ? Color(0xFFFF4848) : Color(0xFFDBDEE4),
-              height: getProportionateScreenWidth(16),
+              color: widget.product.isFavourite ? Color(0xFFFF4848) : Color(0xFFDBDEE4),
+              height: getProportionateScreenWidth(14),
             ),
           ),
         ),
+        Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: getProportionateScreenWidth(20),
+          ),
+          child: Text(
+            "Description", // Your description text here
+            style: TextStyle(
+              fontSize: getProportionateScreenWidth(20),
+              color: Colors.black,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        ),
+        SizedBox(height: 10),
         Padding(
           padding: EdgeInsets.only(
             left: getProportionateScreenWidth(20),
@@ -103,12 +114,6 @@ class _ProductDescriptionState extends State<ProductDescription> {
                     fontWeight: FontWeight.w600,
                     color: kPrimaryColor,
                   ),
-                ),
-                SizedBox(width: 5),
-                Icon(
-                  Icons.arrow_forward_ios,
-                  size: 12,
-                  color: kPrimaryColor,
                 ),
               ],
             ),

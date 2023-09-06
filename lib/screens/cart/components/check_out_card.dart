@@ -4,7 +4,6 @@ import 'package:mechanics_mangao/components/default_button.dart';
 import 'package:mechanics_mangao/models/Cart.dart';
 
 import './checkout_screen.dart';
-import '../../../constants.dart';
 import '../../../size_config.dart';
 
 class CheckoutCard extends StatelessWidget {
@@ -58,12 +57,6 @@ class CheckoutCard extends StatelessWidget {
                 ),
                 Spacer(),
                  Text("Please Proceed to Checkout Now"),
-                const SizedBox(width: 10),
-                Icon(
-                  Icons.arrow_forward_ios,
-                  size: 12,
-                  color: kTextColor,
-                )
               ],
             ),
             SizedBox(height: getProportionateScreenHeight(20)),
@@ -83,16 +76,20 @@ class CheckoutCard extends StatelessWidget {
                 ),
                 SizedBox(
                   width: getProportionateScreenWidth(190),
-                  child: DefaultButton(
-                    text: "Check Out",
-                    press: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => CheckoutScreen(cartItems: demoCarts),
-                        ),
-                      );
-                    },
+                  child: Container(
+                    width: double.infinity, // Makes the button take the full width
+                    height: 60,
+                    child: DefaultButton(
+                      text: "Check Out",
+                      press: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => CheckoutScreen(cartItems: demoCarts),
+                          ),
+                        );
+                      },
+                    ),
                   ),
                 ),
               ],
