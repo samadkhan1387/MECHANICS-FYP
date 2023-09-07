@@ -1,53 +1,43 @@
+// notifications.dart
 import 'package:flutter/material.dart';
 
-class NotificationsPage extends StatelessWidget {
+class NotificationsPage extends StatefulWidget {
+  @override
+  _NotificationsPageState createState() => _NotificationsPageState();
+}
+
+class _NotificationsPageState extends State<NotificationsPage> {
+  List<String> notifications = [
+    "You order is on your way ",
+    "Buy spare parts for your car now at discount of 20 %",
+    "Book your service package now to maintain your car performance",
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Notifications'),
+        title: Text("Notifications", style: TextStyle(color: Colors.black)),
+        backgroundColor: Color(0xFF3C8ED3),
       ),
-      body: ListView(
-        padding: EdgeInsets.all(16.0),
-        children: [
-          NotificationItem(
-            title: 'New Purchase',
-            subtitle: 'You have made a new purchase.',
-            icon: Icons.shopping_bag,
-          ),
-          NotificationItem(
-            title: 'Checkout Complete',
-            subtitle: 'Your checkout process is complete.',
-            icon: Icons.check_circle,
-          ),
-          NotificationItem(
-            title: 'Item Added to Cart',
-            subtitle: 'An item has been added to your cart.',
-            icon: Icons.add_shopping_cart,
-          ),
-        ],
+      body: ListView.builder(
+        padding: EdgeInsets.all(10.0),
+        itemCount: notifications.length,
+        itemBuilder: (context, index) {
+          return ListTile(
+            title: Text(notifications[index]),
+            trailing: IconButton(
+              icon: Icon(Icons.check),
+              onPressed: () {
+                // Mark notification as read
+                setState(() {
+                  notifications.removeAt(index);
+                });
+              },
+            ),
+          );
+        },
       ),
-    );
-  }
-}
-
-class NotificationItem extends StatelessWidget {
-  final String title;
-  final String subtitle;
-  final IconData icon;
-
-  const NotificationItem({
-    required this.title,
-    required this.subtitle,
-    required this.icon,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      leading: Icon(icon),
-      title: Text(title),
-      subtitle: Text(subtitle),
     );
   }
 }

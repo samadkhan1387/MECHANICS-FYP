@@ -5,51 +5,53 @@ class HelpCenterPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Help Center'),
+        title: Text('Help Center', style: TextStyle(color: Colors.black)),
+        backgroundColor: Color(0xFF3C8ED3),
       ),
-      body: Padding(
-        padding: EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+      body: Container(
+        child: ListView(
+          padding: EdgeInsets.all(10.0),
           children: [
-            Text(
-              'Contact Information:',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            SizedBox(height: 8),
-            Text('Email: help@example.com'),
-            Text('Emergency Contact: +1 123 456 7890'),
-            SizedBox(height: 16),
-            Text(
-              'Description:',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            SizedBox(height: 8),
-            Text(
-              'Lorem ipsum dolor sit amet, consectetur adipiscing elit. '
-                  'Sed aliquet neque eget ligula auctor, quis iaculis dui tempor. '
-                  'In hac habitasse platea dictumst. Sed non mauris sit amet nisi '
-                  'mattis consequat nec at risus. Nullam id nunc quam.',
-            ),
-            SizedBox(height: 16),
-            Text(
-              'How may I help you?',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            SizedBox(height: 8),
-            Text('Please feel free to contact us if you have any questions, concerns, or issues.'),
+            _buildListTile("Contact Information:", [
+              'Email: info@mechanicsmangao.pk',
+              'Emergency Contact: +92 313 7868899',
+            ]),
+            _buildListTile("Description:", [
+              'If you are looking for a trustworthy, reliable company for your automobile repair needs, look no further.',
+              'Service Hours',
+              'Monday           : 9:00am - 7:00pm',
+              'Tuesday           : 9:00am - 7:00pm',
+              'Wednesday     : 9:00am - 7:00pm',
+              'Thursday         : 9:00am - 7:00pm',
+              'Friday              : OFF',
+              'Saturday         : 9:00am - 7:00pm',
+              'Sunday            : 9:00am - 7:00pm',
+            ]),
+            _buildListTile("How may I help you?", [
+              'Please feel free to contact us if you have any questions, concerns, or issues.',
+            ]),
             // Add more help content as needed
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildListTile(String title, List<String> content) {
+    return ListTile(
+      title: Text(title, style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.black)),
+      subtitle: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: content.map((text) {
+          return Padding(
+            padding: EdgeInsets.only(top: 8),
+            child: Text(
+              text,
+              style: TextStyle(color: Colors.black),
+              textAlign: TextAlign.justify, // Justify text
+            ),
+          );
+        }).toList(),
       ),
     );
   }

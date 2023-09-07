@@ -6,86 +6,101 @@ class MyAccountPage extends StatefulWidget {
 }
 
 class _MyAccountPageState extends State<MyAccountPage> {
-  TextEditingController _fullNameController = TextEditingController();
+  TextEditingController _nameController = TextEditingController();
   TextEditingController _emailController = TextEditingController();
+  TextEditingController _phoneController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
-
-  String _tempFullName = 'John Doe';
-  String _tempEmail = 'johndoe@example.com';
-  String _tempPassword = '********';
 
   @override
   void initState() {
     super.initState();
-    _fullNameController.text = _tempFullName;
-    _emailController.text = _tempEmail;
-    _passwordController.text = _tempPassword;
+
+    // Set temporary values in the text fields
+    _nameController.text = 'Mechanic Mangao';
+    _emailController.text = 'info@mechanicmangao.com';
+    _phoneController.text = '+923137868899';
+    _passwordController.text = '********';
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('My Account'),
+        title: Text("My Account", style: TextStyle(color: Colors.black)),
+          backgroundColor: Color(0xFF3C8ED3),
       ),
-      body: Padding(
-        padding: EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text(
-              'Account Details',
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.all(20.0),
+          child: Column(
+            children: [
+              Text(
+                'User Account Details',
+                style: TextStyle(
+                  fontSize: 22,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-            ),
-            SizedBox(height: 25),
-            TextField(
-              controller: _fullNameController,
-              decoration: InputDecoration(labelText: 'Full Name'),
-            ),
-            SizedBox(height: 25),
-            TextField(
-              controller: _emailController,
-              decoration: InputDecoration(labelText: 'Email'),
-            ),
-            SizedBox(height: 25),
-            TextField(
-              controller: _passwordController,
-              obscureText: true,
-              decoration: InputDecoration(labelText: 'Password'),
-            ),
-            Spacer(),
-            Center(
-              child: ElevatedButton(
-                onPressed: () {
-                  // Save the updated account information here
-                  String fullName = _fullNameController.text;
-                  String email = _emailController.text;
-                  String password = _passwordController.text;
-
-                  // Perform saving logic here, e.g., update user data in a database
-
-                  // Show a confirmation snackbar
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text('Account information updated')),
-                  );
-                },
-                child: Text('Save Changes'),
+              SizedBox(height: 20),
+              TextField(
+                controller: _nameController,
+                decoration: InputDecoration(labelText: 'Name'),
               ),
-            ),
-          ],
+              SizedBox(height: 20),
+              TextField(
+                controller: _emailController,
+                decoration: InputDecoration(labelText: 'Email'),
+              ),
+              SizedBox(height: 20),
+              TextField(
+                controller: _phoneController,
+                decoration: InputDecoration(labelText: 'Phone No'),
+              ),
+              SizedBox(height: 20),
+              TextField(
+                controller: _passwordController,
+                decoration: InputDecoration(labelText: 'Password'),
+              ),
+              SizedBox(height: 20),
+              Center(
+                child: Container(
+                  width: 250,
+                  height: 60,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(20.0),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        // Get the updated values from the text fields
+                        String newName = _nameController.text;
+                        String newEmail = _emailController.text;
+                        String newPhoneNo = _phoneController.text;
+                        String newPassword = _passwordController.text;
+
+                        // Implement logic to update user profile here
+
+                        // Set the controllers with the new values
+                        setState(() {
+                          _nameController.text = newName;
+                          _emailController.text = newEmail;
+                          _phoneController.text = newPhoneNo;
+                          _passwordController.text = newPassword;
+                        });
+
+                        // Navigate to the user's updated profile or a confirmation page
+                      },
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF3C8ED3)),
+                      ),
+                      child: Text('Save', style: TextStyle(fontSize: 20)),
+                    ),
+                  ),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    _fullNameController.dispose();
-    _emailController.dispose();
-    _passwordController.dispose();
-    super.dispose();
   }
 }
