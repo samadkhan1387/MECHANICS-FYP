@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mechanics_mangao/screens/home/home_screen.dart';
 import 'package:mechanics_mangao/screens/profile/profile_screen.dart';
 import 'package:mechanics_mangao/screens/shop/shop_screen.dart';
-
+import '../chat/chat_screen.dart';
 import '../constants.dart';
 import '../enums.dart';
 
@@ -60,8 +60,14 @@ class CustomBottomNavBar extends StatelessWidget {
                     Navigator.pushNamed(context, ShopScreen.routeName),
               ),
               IconButton(
-                icon: SvgPicture.asset("assets/icons/Chat bubble Icon.svg"),
-                onPressed: () {},
+                icon: SvgPicture.asset(
+                    "assets/icons/Chat bubble Icon.svg",
+                  color: MenuState.chat == selectedMenu
+                      ? kPrimaryColor
+                      : inActiveIconColor,
+                ),
+                onPressed: () =>
+                    Navigator.pushNamed(context, ChatScreen.routeName),
               ),
               IconButton(
                 icon: SvgPicture.asset(

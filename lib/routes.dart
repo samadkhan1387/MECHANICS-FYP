@@ -9,6 +9,7 @@ import 'package:mechanics_mangao/screens/profile/profile_screen.dart';
 import 'package:mechanics_mangao/screens/shop/shop_screen.dart';
 import 'package:mechanics_mangao/screens/sign_in/sign_in_screen.dart';
 import 'package:mechanics_mangao/screens/splash/splash_screen.dart';
+import 'chat/chat_screen.dart';
 import 'screens/sign_up/sign_up_screen.dart';
 import 'package:mechanics_mangao/providers/notification_screen.dart';
 
@@ -23,6 +24,7 @@ final Map<String, WidgetBuilder> routes = {
   OtpScreen.routeName: (context) => OtpScreen(),
   HomeScreen.routeName: (context) => HomeScreen(),
   ShopScreen.routeName: (context) => ShopScreen(),
+  ChatScreen.routeName: (context) => ChatScreen(),
   DetailsScreen.routeName: (context) => DetailsScreen(),
   CartScreen.routeName: (context) => CartScreen(),
   ProfileScreen.routeName: (context) => ProfileScreen(),
