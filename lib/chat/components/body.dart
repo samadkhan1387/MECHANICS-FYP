@@ -16,7 +16,7 @@ class _ChatScreenState extends State<Body> {
     super.initState();
     // Simulate receiving messages
     _receiveMessage("Hello!", "User 1");
-    _receiveMessage("Hi there!", "User 2");
+    _receiveMessage("Hi there! How may i help you", "User 2");
   }
 
   void _sendMessage(String text) {
@@ -123,10 +123,10 @@ class MessageWidget extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           color: message.sender == 'User' ? Color(0xFF3C8ED3) : Colors.orangeAccent,
-          borderRadius: BorderRadius.circular(8.0),
+          borderRadius: BorderRadius.circular(18.0),
         ),
         padding: EdgeInsets.all(15.0),
-        margin: EdgeInsets.symmetric(vertical: 5.0, horizontal: 12.0),
+        margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 15.0),
         child: Text(
           message.text,
           style: TextStyle(
