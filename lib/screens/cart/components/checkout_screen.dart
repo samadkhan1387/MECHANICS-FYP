@@ -29,6 +29,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Add Shipping Address", style: TextStyle(color: Colors.black)),
+        backgroundColor: Color(0xFF3C8ED3),
       ),
       body: SingleChildScrollView(
         child: Padding(

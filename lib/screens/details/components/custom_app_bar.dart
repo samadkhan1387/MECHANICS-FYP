@@ -7,7 +7,6 @@ class CustomAppBar extends StatelessWidget {
 
   CustomAppBar({required this.rating});
 
-  // AppBar().preferredSize.height provide us the height that applies to our app bar
   Size get preferredSize => Size.fromHeight(AppBar().preferredSize.height);
 
   @override
@@ -26,7 +25,7 @@ class CustomAppBar extends StatelessWidget {
                 Navigator.pop(context);
               },
             ),
-            SizedBox(width: 255), // Adjust this width as needed
+            SizedBox(width: 230), // Adjust this width as needed
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 5),
               decoration: BoxDecoration(

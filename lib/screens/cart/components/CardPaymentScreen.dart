@@ -62,6 +62,7 @@ class _CardPaymentScreenState extends State<CardPaymentScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Card Details", style: TextStyle(color: Colors.black)),
+        backgroundColor: Color(0xFF3C8ED3),
       ),
       body: SingleChildScrollView(
         child: Container(

@@ -107,6 +107,7 @@ class _BookAppointmentPageState extends State<BookAppointmentPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Add Booking Details", style: TextStyle(color: Colors.black)),
+        backgroundColor: Color(0xFF3C8ED3),
       ),
       body: SingleChildScrollView(
         child: Padding(
