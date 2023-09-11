@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'TicketCardPaymentScreen.dart';
+
 class BookTickets extends StatefulWidget {
   @override
   _BookTicketsState createState() => _BookTicketsState();
@@ -41,7 +43,6 @@ class _BookTicketsState extends State<BookTickets> {
                   height: 160,
                   width: 360,
                 ),
-
                 Text(
                   'Ticket Price: 800 Rs',
                   style: TextStyle(
@@ -113,9 +114,11 @@ class _BookTicketsState extends State<BookTickets> {
                       child: ElevatedButton(
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
-                            // Handle ticket booking logic here
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(content: Text('Ticket booked')),
+                            // Navigate to the payment confirmation screen
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => TicketCardPaymentScreen(),
+                              ),
                             );
                           }
                         },
@@ -123,8 +126,7 @@ class _BookTicketsState extends State<BookTickets> {
                           backgroundColor: MaterialStateProperty.all<Color>(
                               Color(0xFF3C8ED3)),
                         ),
-                        child:
-                        Text('Book Ticket', style: TextStyle(fontSize: 20)),
+                        child: Text('Pay Now', style: TextStyle(fontSize: 20)),
                       ),
                     ),
                   ),

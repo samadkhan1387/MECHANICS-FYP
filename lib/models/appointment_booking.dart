@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../screens/home/components/OrderSuccessScreen.dart';
+
 class BookAppointmentPage extends StatefulWidget {
   final String productTitle;
 
@@ -25,9 +27,9 @@ class _BookAppointmentPageState extends State<BookAppointmentPage> {
   List<int> validCarYears = [2020, 2021, 2022, 2023];
   List<TimeOfDay> validTimes = [
     TimeOfDay(hour: 9, minute: 0),
-    TimeOfDay(hour: 11, minute: 0),
-    TimeOfDay(hour: 13, minute: 0),
+    TimeOfDay(hour: 12, minute: 0),
     TimeOfDay(hour: 15, minute: 0),
+    TimeOfDay(hour: 18, minute: 0),
   ];
 
   @override
@@ -222,26 +224,34 @@ class _BookAppointmentPageState extends State<BookAppointmentPage> {
                     height: 60,
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(20.0),
-                    child: ElevatedButton(
-                      onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-                          // Handle appointment booking logic here
+                      child: ElevatedButton(
+                        onPressed: () {
+                          if (_formKey.currentState!.validate()) {
+                            // Handle appointment booking logic here
 
-                          // Show a confirmation snackbar
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(content: Text('Appointment booked')),
-                          );
-                        }
-                      },
-                      style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF3C8ED3)),
+                            // Show a confirmation snackbar
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(content: Text('Appointment booked')),
+                            );
+
+                            // Navigate to the OrderSuccessScreen.dart
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => OrderSuccessScreen(), // Replace with the actual name of your OrderSuccessScreen class
+                              ),
+                            );
+                          }
+                        },
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF3C8ED3)),
+                        ),
+                        child: Text('Confirm Appointment', style: TextStyle(fontSize: 20)),
                       ),
-                      child: Text('Confirm Appointment', style: TextStyle(fontSize: 20)),
                     ),
                   ),
                 ),
-
-                )],
+              ],
             ),
           ),
         ),
