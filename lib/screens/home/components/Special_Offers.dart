@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import '../../../size_config.dart';
-import 'engine_service_details.dart';
-import 'engine_tuning_details.dart';
+import 'auto_show.dart';
 
 class SpecialOffers extends StatefulWidget {
   const SpecialOffers({
@@ -35,11 +34,10 @@ class _SpecialOffersState extends State<SpecialOffers> {
             },
           ),
           items: [
-            "assets/images/b5.jpg",
+            "assets/images/auto show 1.jpg",
             "assets/images/b1.jpg",
             "assets/images/b2.jpg",
             "assets/images/b3.jpg",
-            "assets/images/b4.jpg",
           ].map((image) {
             return Padding(
               padding: EdgeInsets.symmetric(horizontal: 10),
@@ -47,14 +45,14 @@ class _SpecialOffersState extends State<SpecialOffers> {
                 builder: (BuildContext context) {
                   return GestureDetector(
                     onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => image.contains('b1')
-                              ? EngineServiceDetails()
-                              : EngineTuningDetails(),
-                        ),
-                      );
+                      if (_currentSlide == 0) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => AutoShow(),
+                          ),
+                        );
+                      }
                     },
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(15),

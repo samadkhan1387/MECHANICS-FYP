@@ -136,13 +136,15 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                             if (paymentMethod == "Cash on Delivery") {
                               // Handle Cash on Delivery payment
                               _placeOrder();
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(content: Text('Your order has been booked')));
                             } 
                           }
                         },
                         style: ButtonStyle(
                           backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF3C8ED3)),
                         ),
-                        child: Text("Confirm & Pay", style: TextStyle(fontSize: 20)),
+                        child: Text("Place Order", style: TextStyle(fontSize: 20)),
                       ),
                     ),
                   ),

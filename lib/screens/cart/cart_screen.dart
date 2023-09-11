@@ -29,6 +29,7 @@ import 'package:flutter/material.dart';
           ),
         ],
        ),
+       backgroundColor: Color(0xFF3C8ED3),
      );
    }
  }

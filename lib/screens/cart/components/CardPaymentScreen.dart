@@ -164,9 +164,11 @@ class _CardPaymentScreenState extends State<CardPaymentScreen> {
                     child: ElevatedButton(
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
+
                           // Save card details and navigate to checkout screen
                           // You can add your logic for saving the card details here
-                          Navigator.pop(context); // Close the CardPaymentScreen
+                          Navigator.pop(context);
+                          // Close the CardPaymentScreen
                         }
                       },
                       style: ButtonStyle(

@@ -26,24 +26,6 @@ class _NotificationScreenState extends State<NotificationScreen> {
     },
   ];
 
-  // @override
-  // Widget build(BuildContext context) {
-  //   return Scaffold(
-  //     body: CustomScrollView(
-  //         slivers: <Widget>[
-  //     SliverAppBar(
-  //     title: Text('Notifications'),
-  //     pinned: true,
-  //     floating: true,
-  //     expandedHeight: 150.0,
-  //     flexibleSpace: FlexibleSpaceBar(
-  //       background: Image.asset(
-  //         'assets/notification_header_image.jpg',
-  //         fit: BoxFit.cover,
-  //       ),
-  //     ),
-  //   ),
-
     @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,6 +34,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
       SliverAppBar(
       title: Text('Notifications', style: TextStyle(color: Colors.black),
       ),
+        backgroundColor: Color(0xFF3C8ED3),
       ),
         SliverList(
           delegate: SliverChildBuilderDelegate(
