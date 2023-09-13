@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "54203721180",
+    "project_id": "mechanics-mangao-24d0d",
+    "storage_bucket": "mechanics-mangao-24d0d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:54203721180:android:6e317f665ea0d12a52db19",
+        "android_client_info": {
+          "package_name": "com.example.mechanics_mangao"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBnXU9KwVxePSpGNM4tVRZwVNR8YdPyj6U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

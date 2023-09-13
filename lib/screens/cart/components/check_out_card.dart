@@ -64,7 +64,7 @@ class CheckoutCard extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  width: getProportionateScreenWidth(190),
+                  width: getProportionateScreenWidth(160),
                   child: Container(
                     width: double.infinity, // Makes the button take the full width
                     height: 60,
