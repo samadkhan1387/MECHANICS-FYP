@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'AutoCareHub',
+      title: 'Mechanics Mangao',
       theme: theme(),
       // home: SplashScreen(),
       // We use routeName so that we don't need to remember the name
