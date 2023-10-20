@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-
+import '../providers/notification_screen.dart';
 import '../screens/home/components/OrderSuccessScreen.dart';
+
 
 class BookAppointmentPage extends StatefulWidget {
   final String productTitle;
@@ -224,34 +225,43 @@ class _BookAppointmentPageState extends State<BookAppointmentPage> {
                     height: 60,
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(20.0),
-                      child: ElevatedButton(
-                        onPressed: () {
-                          if (_formKey.currentState!.validate()) {
-                            // Handle appointment booking logic here
+                      child:ElevatedButton(
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      DateTime selectedDateTime = DateTime(
+                        _selectedDate.year,
+                        _selectedDate.month,
+                        _selectedDate.day,
+                        _selectedTime.hour,
+                        _selectedTime.minute,
+                      );
 
-                            // Show a confirmation snackbar
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(content: Text('Appointment booked')),
-                            );
+                      String notificationMessage =
+                          '${_packageNameController.text} booked for ${selectedDateTime.toLocal()}';
 
-                            // Navigate to the OrderSuccessScreen.dart
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => OrderSuccessScreen(), // Replace with the actual name of your OrderSuccessScreen class
-                              ),
-                            );
-                          }
-                        },
-                        style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF3C8ED3)),
+                      NotificationScreen.addNotification(notificationMessage);
+
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text('Appointment booked')),
+                      );
+
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => OrderSuccessScreen(),
                         ),
-                        child: Text('Confirm Appointment', style: TextStyle(fontSize: 20)),
-                      ),
-                    ),
+                      );
+                    }
+                  },
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF3C8ED3)),
+                  ),
+                      child: Text('Confirm Appointment', style: TextStyle(fontSize: 20)),
+                ),
+                ),
                   ),
                 ),
-              ],
+                ],
             ),
           ),
         ),

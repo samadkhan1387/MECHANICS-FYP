@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+
 
 import 'myaccount.dart';
 // Replace with the actual import for your edit profile page
@@ -26,7 +26,7 @@ class ProfilePic extends StatelessWidget {
               );
             },
             child: CircleAvatar(
-              backgroundImage: AssetImage("assets/images/Profile Image.png"),
+              backgroundImage: AssetImage("assets/images/profile.png"),
             ),
           ),
           Positioned(
@@ -35,18 +35,6 @@ class ProfilePic extends StatelessWidget {
             child: SizedBox(
               height: 46,
               width: 46,
-              child: TextButton(
-                style: TextButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(50),
-                    side: BorderSide(color: Colors.white),
-                  ),
-                  primary: Colors.white,
-                  backgroundColor: Color(0xFFF5F6F9),
-                ),
-                onPressed: () {},
-                child: SvgPicture.asset("assets/icons/Camera Icon.svg"),
-              ),
             ),
           )
         ],

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mechanics_mangao/models/ShopProduct.dart';
 import 'package:mechanics_mangao/size_config.dart';
-import '../../../constants.dart';
+
 import 'item_count_selector.dart';
 
 

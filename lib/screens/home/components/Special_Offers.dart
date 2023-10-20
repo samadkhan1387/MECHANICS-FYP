@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import '../../../autoshow/auto_show.dart';
+import '../../../carmela/car_mela.dart';
+import '../../../omnicarting/omni_carting.dart';
 import '../../../size_config.dart';
-import 'auto_show.dart';
+
 
 class SpecialOffers extends StatefulWidget {
   const SpecialOffers({
@@ -35,9 +38,8 @@ class _SpecialOffersState extends State<SpecialOffers> {
           ),
           items: [
             "assets/images/auto show 1.jpg",
-            "assets/images/b1.jpg",
-            "assets/images/b2.jpg",
-            "assets/images/b3.jpg",
+            "assets/images/carmela.jpg",
+            "assets/images/carting.jpg",
           ].map((image) {
             return Padding(
               padding: EdgeInsets.symmetric(horizontal: 10),
@@ -50,6 +52,20 @@ class _SpecialOffersState extends State<SpecialOffers> {
                           context,
                           MaterialPageRoute(
                             builder: (context) => AutoShow(),
+                          ),
+                        );
+                      } else if (_currentSlide == 1) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => CarMela(),
+                          ),
+                        );
+                      } else if (_currentSlide == 2) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => OmniCarting(),
                           ),
                         );
                       }
@@ -87,7 +103,7 @@ class _SpecialOffersState extends State<SpecialOffers> {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            for (int i = 0; i < 4; i++) // Change the count based on the number of items
+            for (int i = 0; i < 3; i++) // Change the count based on the number of items
               AnimatedContainer(
                 duration: Duration(milliseconds: 300),
                 margin: EdgeInsets.symmetric(horizontal: 4),

@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-
+import '../../sign_in/sign_in_screen.dart';
 import 'profile_menu.dart';
 import 'profile_pic.dart';
-
 import 'myaccount.dart';
-import 'notifications.dart';
 import 'settings.dart';
 import 'helpcenter.dart';
 
@@ -22,7 +20,6 @@ class Body extends StatelessWidget {
             text: "My Account",
             icon: "assets/icons/User Icon.svg",
             press: () {
-              // Handle "My Account" menu item press
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => MyAccountPage()),
@@ -30,21 +27,9 @@ class Body extends StatelessWidget {
             },
           ),
           ProfileMenu(
-            text: "Notifications",
-            icon: "assets/icons/Bell.svg",
-            press: () {
-              // Handle "Notifications" menu item press
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => NotificationsPage()),
-              );
-            },
-          ),
-          ProfileMenu(
             text: "Settings",
             icon: "assets/icons/Settings.svg",
             press: () {
-              // Handle "Settings" menu item press
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => SettingsPage()),
@@ -55,7 +40,6 @@ class Body extends StatelessWidget {
             text: "Help Center",
             icon: "assets/icons/Question mark.svg",
             press: () {
-              // Handle "Help Center" menu item press
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => HelpCenterPage()),
@@ -66,7 +50,6 @@ class Body extends StatelessWidget {
             text: "Log Out",
             icon: "assets/icons/Log out.svg",
             press: () {
-              // Handle "Log Out" menu item press
               showDialog(
                 context: context,
                 builder: (BuildContext context) => AlertDialog(
@@ -82,8 +65,11 @@ class Body extends StatelessWidget {
                     TextButton(
                       child: Text('Log Out'),
                       onPressed: () {
-                        // Perform logout action
                         Navigator.of(context).popUntil((route) => route.isFirst);
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(builder: (context) => SignInScreen()), // Replace with your sign-in page
+                        );
                       },
                     ),
                   ],
@@ -96,4 +82,3 @@ class Body extends StatelessWidget {
     );
   }
 }
-

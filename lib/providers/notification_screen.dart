@@ -2,72 +2,51 @@ import 'package:flutter/material.dart';
 
 class NotificationScreen extends StatefulWidget {
   static String routeName = "/notification";
+  static List<String> notifications = [];
+
+  static void addNotification(String notification) {
+    notifications.add(notification);
+  }
+
   @override
   _NotificationScreenState createState() => _NotificationScreenState();
 }
 
 class _NotificationScreenState extends State<NotificationScreen> {
-  List<Map<String, String>> _notifications = [
-    {
-      'title': 'Catalytic Converter Cleaning',
-      'description': 'Your catalytic converter cleaning is scheduled for tomorrow.',
-    },
-    {
-      'title': 'Interior Cleaning',
-      'description': 'Interior cleaning service is due next week. Book now!',
-    },
-    {
-      'title': 'Engine Tuning',
-      'description': 'Engine tuning scheduled for next month. Confirm the booking.',
-    },
-    {
-      'title': 'Engine Services',
-      'description': 'Don\'t forget your regular engine service checkup.',
-    },
-  ];
-
-    @override
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-    body: CustomScrollView(
-      slivers: <Widget>[
-      SliverAppBar(
-      title: Text('Notifications', style: TextStyle(color: Colors.black),
-      ),
+      appBar: AppBar(
+        title: Text("Notifications", style: TextStyle(color: Colors.black)),
         backgroundColor: Color(0xFF3C8ED3),
       ),
-        SliverList(
-          delegate: SliverChildBuilderDelegate(
-                (context, index) {
-              return _buildNotificationItem(_notifications[index]);
+      body: ListView.builder(
+        padding: EdgeInsets.all(10.0),
+        itemCount: NotificationScreen.notifications.length,
+        itemBuilder: (context, index) {
+          return Dismissible(
+            key: Key(NotificationScreen.notifications[index]),
+            onDismissed: (direction) {
+              setState(() {
+                NotificationScreen.notifications.removeAt(index);
+              });
             },
-            childCount: _notifications.length,
-          ),
-        ),
-      ],
-    ),
-    );
-    }
-}
-
-  // Widget _buildNotificationList() {
-  //   return ListView.builder(
-  //     itemCount: _notifications.length,
-  //     itemBuilder: (context, index) {
-  //       return _buildNotificationItem(_notifications[index]);
-  //     },
-  //   );
-  // }
-
-  Widget _buildNotificationItem(Map<String, String> notification) {
-    return ListTile(
-      title: Text(notification['title']!),
-      subtitle: Text(notification['description']!),
-      leading: Icon(Icons.notifications),
-      onTap: () {
-        // You can add custom logic here when a notification is tapped.
-        // For example, navigate to a specific screen or display additional details.
-      },
+            background: Container(
+              color: Colors.red,
+              alignment: Alignment.centerRight,
+              padding: EdgeInsets.only(right: 16.0),
+              child: Icon(
+                Icons.delete,
+                color: Colors.white,
+              ),
+            ),
+            child: ListTile(
+              title: Text(NotificationScreen.notifications[index]),
+              // Add any other widgets you want in the ListTile
+            ),
+          );
+        },
+      ),
     );
   }
-
+}

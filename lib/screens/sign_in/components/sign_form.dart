@@ -4,7 +4,8 @@ import 'package:mechanics_mangao/components/form_error.dart';
 import 'package:mechanics_mangao/helper/keyboard.dart';
 import 'package:mechanics_mangao/screens/forgot_password/forgot_password_screen.dart';
 import 'package:mechanics_mangao/screens/home/home_screen.dart';
-
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import '../../../components/default_button.dart';
 import '../../../constants.dart';
 import '../../../size_config.dart';
@@ -20,6 +21,8 @@ class _SignFormState extends State<SignForm> {
   String? password;
   bool? remember = false;
   final List<String?> errors = [];
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseDatabase _database = FirebaseDatabase.instance;
 
   void addError({String? error}) {
     if (!errors.contains(error))
@@ -47,16 +50,6 @@ class _SignFormState extends State<SignForm> {
           SizedBox(height: getProportionateScreenHeight(30)),
           Row(
             children: [
-              Checkbox(
-                value: remember,
-                activeColor: kPrimaryColor,
-                onChanged: (value) {
-                  setState(() {
-                    remember = value;
-                  });
-                },
-              ),
-              Text("Remember me"),
               Spacer(),
               GestureDetector(
                 onTap: () => Navigator.pushNamed(
@@ -72,12 +65,41 @@ class _SignFormState extends State<SignForm> {
           SizedBox(height: getProportionateScreenHeight(20)),
           DefaultButton(
             text: "Continue",
-            press: () {
+            press: () async {
               if (_formKey.currentState!.validate()) {
                 _formKey.currentState!.save();
-                // if all are valid then go to success screen
-                KeyboardUtil.hideKeyboard(context);
-                Navigator.pushNamed(context, HomeScreen.routeName);
+                try {
+                  final UserCredential userCredential =
+                  await _auth.signInWithEmailAndPassword(
+                    email: email!,
+                    password: password!,
+                  );
+
+                  if (userCredential.user != null) {
+                    KeyboardUtil.hideKeyboard(context);
+                    // Use pushNamedAndRemoveUntil to remove login and splash screens from the stack
+                    Navigator.pushNamedAndRemoveUntil(
+                      context,
+                      HomeScreen.routeName,
+                          (route) => false, // Remove all previous routes
+                    );
+
+                    final User user = userCredential.user!;
+                    await storeUserInDatabase(user.uid, email!, password!);
+                  }
+                } catch (e) {
+                  print("Sign-in Error: $e");
+                  if (e is FirebaseAuthException) {
+                    if (e.code == 'user-not-found') {
+                      addError(
+                          error: "Email is incorrect. Please check your email.");
+                    } else if (e.code == 'wrong-password') {
+                      addError(error: "Password is incorrect. Please try again.");
+                    } else {
+                      addError(error: "Please check Email and Password.");
+                    }
+                  }
+                }
               }
             },
           ),
@@ -96,7 +118,6 @@ class _SignFormState extends State<SignForm> {
         } else if (value.length >= 8) {
           removeError(error: kShortPassError);
         }
-        return null;
       },
       validator: (value) {
         if (value!.isEmpty) {
@@ -106,13 +127,10 @@ class _SignFormState extends State<SignForm> {
           addError(error: kShortPassError);
           return "";
         }
-        return null;
       },
       decoration: InputDecoration(
         labelText: "Password",
         hintText: "Enter your password",
-        // If  you are using latest version of flutter then lable text and hint text shown like this
-        // if you r using flutter less then 1.20.* then maybe this is not working properly
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/Lock.svg"),
       ),
@@ -129,7 +147,6 @@ class _SignFormState extends State<SignForm> {
         } else if (emailValidatorRegExp.hasMatch(value)) {
           removeError(error: kInvalidEmailError);
         }
-        return null;
       },
       validator: (value) {
         if (value!.isEmpty) {
@@ -139,16 +156,27 @@ class _SignFormState extends State<SignForm> {
           addError(error: kInvalidEmailError);
           return "";
         }
-        return null;
       },
       decoration: InputDecoration(
         labelText: "Email",
         hintText: "Enter your email",
-        // If  you are using latest version of flutter then lable text and hint text shown like this
-        // if you r using flutter less then 1.20.* then maybe this is not working properly
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/Mail.svg"),
       ),
     );
+  }
+
+  Future<void> storeUserInDatabase(
+      String userId, String email, String password) async {
+    try {
+      DatabaseReference userRef = _database.ref().child('users');
+      DatabaseReference newUserRef = userRef.child(userId);
+      await newUserRef.set({
+        'email': email,
+        'password': password,
+      });
+    } catch (e) {
+      print("Database Error: $e");
+    }
   }
 }

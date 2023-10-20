@@ -1,10 +1,8 @@
 import 'package:flutter/widgets.dart';
 import 'package:mechanics_mangao/screens/cart/cart_screen.dart';
-import 'package:mechanics_mangao/screens/complete_profile/complete_profile_screen.dart';
 import 'package:mechanics_mangao/screens/details/details_screen.dart';
 import 'package:mechanics_mangao/screens/forgot_password/forgot_password_screen.dart';
 import 'package:mechanics_mangao/screens/home/home_screen.dart';
-import 'package:mechanics_mangao/screens/otp/otp_screen.dart';
 import 'package:mechanics_mangao/screens/profile/profile_screen.dart';
 import 'package:mechanics_mangao/screens/shop/shop_screen.dart';
 import 'package:mechanics_mangao/screens/sign_in/sign_in_screen.dart';
@@ -20,8 +18,6 @@ final Map<String, WidgetBuilder> routes = {
   SignInScreen.routeName: (context) => SignInScreen(),
   ForgotPasswordScreen.routeName: (context) => ForgotPasswordScreen(),
   SignUpScreen.routeName: (context) => SignUpScreen(),
-  CompleteProfileScreen.routeName: (context) => CompleteProfileScreen(),
-  OtpScreen.routeName: (context) => OtpScreen(),
   HomeScreen.routeName: (context) => HomeScreen(),
   ShopScreen.routeName: (context) => ShopScreen(),
   ChatScreen.routeName: (context) => ChatScreen(),
